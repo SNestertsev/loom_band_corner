@@ -1,3 +1,12 @@
+typings/**
+node_modules
+**/*npm-debug.log.*
+*.js
+*.js.map
+!systemjs.config.js
+!typings/typings.d.ts
+
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
