@@ -7,7 +7,7 @@ export class CraftItem {
     available: boolean;
 }
 
-export class CraftGallery {
+export class GalleryCathegory {
     id: number;
     name: string;
     description: string;

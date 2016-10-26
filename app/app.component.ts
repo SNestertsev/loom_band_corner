@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-app',
+  selector: 'lbc-app',
   templateUrl: 'app.component.html'
 })
 export class AppComponent { 
