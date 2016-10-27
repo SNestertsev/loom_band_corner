@@ -10,6 +10,16 @@
                     </ul>
                     <span *ngIf="!hasCathegories()">{{ noCathegoriesMessage }}</span>
                 </div>
+                <div class="panel-footer">
+                    <a *ngIf="!isEditing" class="btn btn-primary btn-sm" role="button" (click)="onEdit()">Edit</a>
+
+                    <div *ngIf="isEditing" class="form-group">
+                        <input type="text" class="form-control" id="newCathegoryName" [(ngModel)]="newCathegoryName">
+                        <button type="button" class="btn" (click)="onAdd()">Add</button>
+                    </div>
+                    <br>
+                    <a *ngIf="isEditing" class="btn btn-primary btn-sm" role="button" (click)="onDone()">Done</a>
+                </div>
             </div>
         </div>
         <!-- Selected cathegory content -->
