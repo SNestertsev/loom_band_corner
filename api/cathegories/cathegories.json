@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Bracelets",
+        "description": "Description of the first cathegory"
+    },
+    {
+        "id": 2,
+        "name": "Figures 2D",
+        "description": "Description of the second cathegory"
+    },
+    {
+        "id": 3,
+        "name": "Figures 3D",
+        "description": "Description of the third cathegory"
+    }
+]

@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
         <!-- Cathegories -->
-        <div class="col-sm-3 col-md-2">
+        <div class="col-sm-5 col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading"> {{ cathegoriesTitle }} </div>
                 <div class="panel-body">
                     <ul *ngIf="hasCathegories()">
-                        <li *ngFor="let cathegory of cathegories">{{ cathegory.name }}</li>
+                        <li *ngFor="let cathegory of cathegories" (click)="onSelect(cathegory)">{{ cathegory.name }}</li>
                     </ul>
                     <span *ngIf="!hasCathegories()">{{ noCathegoriesMessage }}</span>
                 </div>
@@ -23,8 +23,8 @@
             </div>
         </div>
         <!-- Selected cathegory content -->
-        <div class="col-sm-9 col-md-10">
-            Cathegory content (placeholder)
+        <div class="col-sm-7 col-md-7">
+            <lbc-craft-list [cathegory]="selectedCathegory"></lbc-craft-list>
         </div>
     </div>
 </div>

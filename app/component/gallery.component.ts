@@ -1,56 +1,52 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { IGalleryCathegory, GalleryCathegory } from '../model/craft.gallery';
+import { GalleryService } from '../services/gallery.service';
 
 @Component({
-  moduleId: module.id,
-  selector: 'lbc-gallery',
-  templateUrl: 'gallery.component.html'
+    moduleId: module.id,
+    templateUrl: 'gallery.component.html'
 })
-export class GalleryComponent implements OnInit { 
-  cathegoriesTitle: string = "Cathegories";
-  noCathegoriesMessage: string = "No cathegories";
-  cathegories: IGalleryCathegory[];
-  isEditing: boolean = false;
-  newCathegoryName: string = "";
+export class GalleryComponent implements OnInit {
+    cathegoriesTitle: string = "Cathegories";
+    noCathegoriesMessage: string = "No cathegories";
+    cathegories: IGalleryCathegory[];
+    selectedCathegory: IGalleryCathegory;
+    isEditing: boolean = false;
+    newCathegoryName: string = "";
+    errorMessage: string;
 
-  ngOnInit() {
-    this.cathegories = [
-      {
-        id: 1,
-        name: "Bracelets",
-        description: "Description of the first cathegory"
-      },
-      {
-        id: 2,
-        name: "Figures 2D",
-        description: "Description of the second cathegory"
-      },
-      {
-        id: 3,
-        name: "Figures 3D",
-        description: "Description of the third cathegory"
-      }
-    ];
-  }
-
-  public hasCathegories(): boolean {
-    return this.cathegories && this.cathegories.length > 0;
-  }
-
-  public onEdit() {
-    this.newCathegoryName = "";
-    this.isEditing = true;
-  }
-
-  public onAdd() {
-    if (this.newCathegoryName && this.newCathegoryName.length > 0) {
-      this.cathegories.push(new GalleryCathegory(4, this.newCathegoryName, ""));
+    constructor(private _galleryService: GalleryService) {
     }
-    //this.cathegories.push(new GalleryCathegory(4, "New cathegory", ""));
-  }
 
-  public onDone() {
-    this.isEditing = false;
-  }
+    ngOnInit() {
+        this._galleryService.getCathegories()
+            .subscribe(
+                cathegories => this.cathegories = cathegories,
+                error => this.errorMessage = <any>error);
+    }
+
+    public hasCathegories(): boolean {
+        return this.cathegories && this.cathegories.length > 0;
+    }
+
+    public onSelect(cathegory: IGalleryCathegory): void {
+        this.selectedCathegory = cathegory;
+    }
+
+    public onEdit(): void {
+        this.newCathegoryName = "";
+        this.isEditing = true;
+    }
+
+    public onAdd(): void {
+        if (this.newCathegoryName && this.newCathegoryName.length > 0) {
+            this._galleryService.addCathegory(this.newCathegoryName, "");
+        }
+    }
+
+    public onDone(): void {
+        this.isEditing = false;
+    }
 
 }
