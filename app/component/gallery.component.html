@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <!-- Cathegories -->
+        <div class="col-sm-5 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading"> {{ cathegoriesTitle }} </div>
+                <div class="panel-body">
+                    <ul *ngIf="hasCathegories()">
+                        <li *ngFor="let cathegory of cathegories" (click)="onSelect(cathegory)">{{ cathegory.name }}</li>
+                    </ul>
+                    <span *ngIf="!hasCathegories()">{{ noCathegoriesMessage }}</span>
+                </div>
+                <div class="panel-footer">
+                    <a *ngIf="!isEditing" class="btn btn-primary btn-sm" role="button" (click)="onEdit()">Edit</a>
+
+                    <div *ngIf="isEditing" class="form-group">
+                        <input type="text" class="form-control" id="newCathegoryName" [(ngModel)]="newCathegoryName">
+                        <button type="button" class="btn" (click)="onAdd()">Add</button>
+                    </div>
+                    <br>
+                    <a *ngIf="isEditing" class="btn btn-primary btn-sm" role="button" (click)="onDone()">Done</a>
+                </div>
+            </div>
+        </div>
+        <!-- Selected cathegory content -->
+        <div class="col-sm-7 col-md-7">
+            <lbc-craft-list [cathegory]="selectedCathegory"></lbc-craft-list>
+        </div>
+    </div>
+</div>
+
+
+

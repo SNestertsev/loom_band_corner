@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
+
 @Component({
-  selector: 'my-app',
-  template: '<h1>My First Angular App</h1>'
+  moduleId: module.id,
+  selector: 'lbc-app',
+  templateUrl: 'app.component.html'
 })
-export class AppComponent { }
+export class AppComponent { 
+  title = 'Loom Bands Corner';
+}
